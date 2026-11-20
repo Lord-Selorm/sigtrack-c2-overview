@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark mode (default) */
+    --bg-primary: #0D1521;
+    --bg-secondary: #111827;
+    --bg-tertiary: #1E293B;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-color: #1E293B;
+    --accent-blue: #3b82f6;
+    --accent-blue-hover: #2563eb;
+    --accent-amber: #f59e0b;
+    --accent-emerald: #10b981;
+    --accent-rose: #f43f5e;
+    --scrollbar-track: #0D1521;
+    --scrollbar-thumb: #1E293B;
+    --scrollbar-thumb-hover: #334155;
+  }
+
+  [data-theme='light'] {
+    /* Light mode */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border-color: #e2e8f0;
+    --accent-blue: #2563eb;
+    --accent-blue-hover: #1d4ed8;
+    --accent-amber: #d97706;
+    --accent-emerald: #059669;
+    --accent-rose: #e11d48;
+    --scrollbar-track: #f1f5f9;
+    --scrollbar-thumb: #cbd5e1;
+    --scrollbar-thumb-hover: #94a3b8;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Chakra Petch', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Thin SigTrack-style scrollbar — matches the real app */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+
+  /* Light mode hover background */
+  [data-theme='light'] .table-row-hover:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+@layer components {
+  /* ── Card shell — matches real SigTrack panels ── */
+  .card {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.75rem;
+  }
+
+  /* ── Status badges ── */
+  .badge-normal {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #34d399;
+    border-color: rgba(16, 185, 129, 0.3);
+    border-width: 1px;
+    border-style: solid;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-family: ui-monospace, monospace;
+  }
+  .badge-warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.3);
+    border-width: 1px;
+    border-style: solid;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-family: ui-monospace, monospace;
+  }
+  .badge-danger {
+    background-color: rgba(244, 63, 94, 0.1);
+    color: #fb7185;
+    border-color: rgba(244, 63, 94, 0.3);
+    border-width: 1px;
+    border-style: solid;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-family: ui-monospace, monospace;
+  }
+  .badge-muted {
+    background-color: var(--bg-tertiary);
+    color: var(--text-muted);
+    border-color: var(--border-color);
+    border-width: 1px;
+    border-style: solid;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-family: ui-monospace, monospace;
+  }
+  .badge-blue {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #60a5fa;
+    border-color: rgba(59, 130, 246, 0.3);
+    border-width: 1px;
+    border-style: solid;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-family: ui-monospace, monospace;
+  }
+
+  /* ── Section header label ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-blue);
+    font-family: ui-monospace, monospace;
+  }
+
+  /* ── Table row hover ── */
+  .table-row-hover {
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    cursor: pointer;
+  }
+  .table-row-hover:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Light mode hover override - stronger contrast */
+  [data-theme='light'] .table-row-hover:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Generic hover utility for both themes */
+  .hover-subtle {
+    transition: background-color 150ms ease;
+  }
+  .hover-subtle:hover {
+    background-color: var(--bg-tertiary);
+    opacity: 0.08;
+  }
+  [data-theme='light'] .hover-subtle:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Stronger hover for interactive elements */
+  .hover-interactive {
+    transition: background-color 150ms ease;
+  }
+  .hover-interactive:hover {
+    background-color: var(--bg-tertiary);
+    opacity: 0.5;
+  }
+  [data-theme='light'] .hover-interactive:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Data row hover - direct class approach */
+  .data-row-hover-effect {
+    transition: background-color 150ms ease;
+  }
+  .data-row-hover-effect:hover {
+    background-color: #1e293b !important;
+  }
+  [data-theme='light'] .data-row-hover-effect:hover {
+    background-color: #e2e8f0 !important;
+  }
+
+  /* ── SigTrack blue primary button ── */
+  .btn-primary {
+    background-color: var(--accent-blue);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+  .btn-primary:hover {
+    background-color: var(--accent-blue-hover);
+  }
+}
