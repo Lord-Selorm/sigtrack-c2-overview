@@ -424,7 +424,7 @@ export function OverviewPage({
         src={logoUrl}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 m-auto h-[62vh] w-auto object-contain opacity-[0.07] select-none"
+        className="pointer-events-none absolute inset-0 z-0 m-auto h-[75vh] w-auto object-contain opacity-[0.14] select-none"
       />
     </div>
   )

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { LucideIcon } from 'lucide-react'
+import logoUrl from '@/assets/sigtrack-logo.png'
 
 interface SummaryCardProps {
   title: string
@@ -36,8 +37,15 @@ export function SummaryCard({
       </div>
 
       {/* Card Body - scrollable */}
-      <div className="flex-1 min-h-0 overflow-y-auto p-4">
-        {children}
+      <div className="relative flex-1 min-h-0 overflow-y-auto p-4">
+        {/* In-card watermark */}
+        <img
+          src={logoUrl}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 m-auto h-24 w-auto object-contain opacity-[0.07] select-none"
+        />
+        <div className="relative z-10">{children}</div>
       </div>
 
       {/* Card Footer */}
